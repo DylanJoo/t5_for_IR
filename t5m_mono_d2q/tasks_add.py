@@ -28,18 +28,21 @@ from t5.data.utils import get_default_vocabulary
 from t5.data.utils import set_global_cache_dirs
 from t5.evaluation import metrics
 import tensorflow_datasets as tfds
-from t5.data.msmarco import msmarco_passage_ranking_prep, msmarco_passage_to_query_prep
-from t5.data.msmarco import msmarco_passage_ranking_ds, msmarco_passage_to_query_ds
+
+from t5.data.msmarco import msmarco_passage_pointwise_ranking_prep, msmarco_passage_pointwise_ranking_ds
+from t5.data.msmarco import msmarco_passage_to_query_prep, msmarco_passage_to_query_ds
+from t5.data.msmarco import msmarco_passage_pairwise_ranking_prep, msmarco_passage_pairwise_ranking_ds
 
 # ==================================== MSMARCO start ======================================
-TaskRegistry.remove('msmarco_passage_ranking')
+TaskRegistry.remove('msmarco_passage_pointwise_ranking')
 TaskRegistry.remove('msmarco_passage_to_query')
+TaskRegistry.remove('msmarco_passage_pairwise_ranking')
 
 # [MONO-RANK] Passage Ranking task 
 TaskRegistry.add(
-    "msmarco_passage_ranking_pair_wise",
-    dataset_fn=msmarco_passage_ranking_ds,
-    text_preprocessor=[msmarco_passage_ranking_prep],
+    "msmarco_passage_pointwise_ranking",
+    dataset_fn=msmarco_pointwise_passage_ranking_ds,
+    text_preprocessor=[msmarco_pointwise_passage_ranking_prep],
     metric_fns=[],
     splits=['train'])
 
@@ -49,6 +52,14 @@ TaskRegistry.add(
     dataset_fn=msmarco_passage_to_query_ds,
     text_preprocessor=[msmarco_passage_to_query_prep],
     metric_fns=[], 
+    splits=['train'])
+
+# [DUO-RANK] Passage Ranking task 
+TaskRegistry.add(
+    "msmarco_passage_pairwise_ranking",
+    dataset_fn=msmarco_pairwise_passage_ranking_ds,
+    text_preprocessor=[msmarco_pairwise_passage_ranking_prep],
+    metric_fns=[],
     splits=['train'])
 
 # ==================================== MSMARCO end ======================================

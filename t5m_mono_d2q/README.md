@@ -3,34 +3,52 @@ Leverage T5 pretrained with mulitview learning framework to improve IR problems.
 ## T5 multiview learning for passage reranking
 > paper: Text-to-text Multi-view Learning for Passage Re-ranking.
 
+### Requirements 
+- GCP with TPU
+
+This codes will need the Google Cloud Platform' VM and TPU. \
+So make sure the GCP account is ready or check the detail in GCP's information.
+- Environment setup 
+```
+export PATH=$PATH:/home/${GCP_ID}/.local/bin
+```
+- Bucket accessibility
+
+You may need to manually modify accessibility of Goole's bucket, and allowed the VM and TPU API to access.
+
 ### Package requirements
 ```
-pip3 install mesh-tensorflow==0.1.17
-pip3 install t5[gcp]==0.7.1
 pip3 install tensorflow==2.3.0
 pip3 install tensorflow-text==2.3.0 
+pip3 install mesh-tensorflow==0.1.17
+pip3 install t5[gcp]==0.7.1
 ```
-> I have only test on the latest version then, so make sure to experiment this with the coresponding pacages versions :)
+> So far, only test on the latest version of these packages.
 
-### Environment requrments
-- GCP with TPU 
-This codes will need the Google Cloud Platform' VM and TPU. So make sure the GCP account is ready or check the detail in GCP's information.
-- Change the enviroment PATH:
-```
-export PATH=$PATH:/home/cfdaclip_001/.local/bin
-```
 
 ### Instructions
 Modifiy the T5 prediction into logit-form, instead of the text output.
 
-> Append the content of 'layers_add.py'
-> ${PYTHON_PACKAGES}/mesh_tensorflow/utils.py
-> Append the content of 'uilts_add.py' 
+1. Append the content of 'layers_add.py' 
+> ${PYTHON_PACKAGES}/mesh_tensorflow/utils.py \
+
+2. Append the content of 'uilts_add.py'  
 > ${PYTHON_PACKAGES}/mesh_tensorflow/transformers/utils.py
+
+3. Add the multiview learning tasks files:
+```
+cp msmarco.py ${PYTHON_PACKAGES}/t5/data/
+```
+
+4. Append the msmarco tasks and mixtures
+- tasks_add.py
+- mixtures_add.py
+> ${PYTHON_PACKAGES}/t5/data/
+
 
 ### Finetunning
 Add the MSMARCO pasage ranking task of (monoT5 + D2Q)
-> file: ${PYTHON_PACKAGES}/mesh_tensorflow/transformers/utils.py
+> ${PYTHON_PACKAGES}/mesh_tensorflow/transformers/utils.py
 
 Run the mulit-view learning framework by T5's API
 

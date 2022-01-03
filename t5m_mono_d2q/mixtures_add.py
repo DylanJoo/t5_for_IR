@@ -24,9 +24,14 @@ from t5.data.utils import rate_num_examples
 from t5.data.utils import rate_unsupervised
 
 # ============================= msmarco  ================================
-MixtureRegistry.remove("msmarco_mono-0.85+d2q-0.15")
+MixtureRegistry.remove("msmarco_mono-0.85+p2q-0.15")
+MixtureRegistry.remove("msmarco_mono-0.85+duo-0.15")
 
 MixtureRegistry.add(
-    "msmarco_mono-0.85+d2q-0.15",
-    [("msmarco_passage_ranking_pairwise", 0.85), ("msmarco_passage_to_query", 0.15)]
+    "msmarco_mono-0.85+p2q-0.15",
+    [("msmarco_passage_pointwise_ranking", 0.85), ("msmarco_passage_to_query", 0.15)]
+)
+MixtureRegistry.add(
+    "msmarco_mono-0.85+duo-0.15",
+    [("msmarco_passage_pointwise_ranking", 0.85), ("msmarco_passage_pairwise_ranking", 0.15)]
 )
