@@ -1,0 +1,12 @@
+for folder in ~/git/t5_for_IR/t5*mono*;do
+    file=${folder##*/}
+    k=1
+    ANSERINI='/home/jhju/treccast/2021/retrieval/anserini'
+
+    ${ANSERINI}/tools/eval/trec_eval.9.0.4/trec_eval \
+        -c -m map \
+        -c -m recip_rank.10 \
+        -c -m recall.1000 \
+        ${ANSERINI}/src/main/resources/topics-and-qrels/qrels.msmarco-passage.dev-subset.txt \
+        ./results/${file}_rerank_top${k}k.trec
+done
