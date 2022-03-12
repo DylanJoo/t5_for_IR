@@ -1,4 +1,4 @@
-for folder in ~/git/t5_for_IR/t5*mono_duo*;do
+for folder in ~/git/t5_for_IR/t5_mono;do
     echo $folder
     file=${folder##*/}
     echo $file
@@ -9,7 +9,7 @@ for folder in ~/git/t5_for_IR/t5*mono_duo*;do
         -flogits ${folder}/qp_pairs.dev.small.flogits \
         -tlogits ${folder}/qp_pairs.dev.small.tlogits \
         -score ${folder}/qp_relevance.dev.small.scores \
-        -runs ./data/dev/query_doc_pair_ids.dev.small.tsv \
+        -runs ./data/dev/query_doc_id_pairs.dev.small.tsv \
         -rerank_runs ./results/${file}_rerank_top${k}k.trec \
         -topk ${k}000 \
         --resoftmax \
