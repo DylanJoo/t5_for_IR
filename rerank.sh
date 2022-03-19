@@ -1,4 +1,4 @@
-for folder in ~/git/t5_for_IR/t5m_mono_d2q_duo;do
+for folder in ~/git/t5_for_IR/t5m_mono_duo;do
     echo $folder
     file=${folder##*/}
     echo $file

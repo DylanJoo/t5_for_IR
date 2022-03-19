@@ -1,4 +1,4 @@
-for file in ~/git/t5_for_IR/results/t5*.trec;do
+for file in ~/git/t5_for_IR/results/t5m_mono_duo*.trec;do
     k=1
     ANSERINI='/home/jhju/treccast/2021/retrieval/anserini'
     echo "Evaluating ${file##*/}..."

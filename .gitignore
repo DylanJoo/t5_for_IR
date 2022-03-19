@@ -5,4 +5,7 @@ results/*
 */*tlogits
 */*flogits
 */*scores
+*/original/*tlogits
+*/original/*flogits
+*/original/*scores
 */*.swp

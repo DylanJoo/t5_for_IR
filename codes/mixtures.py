@@ -200,3 +200,27 @@ MixtureRegistry.add(
 MixtureRegistry.add(
     "wsc_dpr_simple_proportional",
     [(name, _SUPER_GLUE_WEIGHT_MAPPING[name]) for name in _wsc_dpr_tasks])
+
+# <modified start>
+# ============================= msmarco  ================================
+MixtureRegistry.remove("msmarco_mono-0.85+p2q-0.15")
+MixtureRegistry.remove("msmarco_mono-0.85+duo-0.15")
+MixtureRegistry.remove("msmarco_mono-0.75+p2q-0.15+duo-0.1")
+
+MixtureRegistry.add(
+    "msmarco_mono-0.85+p2q-0.15",
+    [("msmarco_passage_pointwise_ranking", 0.85), ("msmarco_passage_to_query", 0.15)]
+)
+
+MixtureRegistry.add(
+    "msmarco_mono-0.85+duo-0.15",
+    [("msmarco_passage_pointwise_ranking", 0.85), ("msmarco_passage_pairwise_ranking", 0.15)]
+)
+
+MixtureRegistry.add(
+    "msmarco_mono-0.75+d2q-0.15+duo-0.1",
+    [("msmarco_passage_pointwise_ranking", 0.75), 
+     ("msmarco_passage_to_query", 0.15), 
+     ("msmarco_passage_pairwise_ranking", 0.1)]
+)
+# <modified end>
