@@ -13,6 +13,7 @@ Leverage T5 pretrained with mulitview learning framework to improve IR problems.
 3. MonoT5 + D2qT5 + DuoT5
 
 
+```
 ## Results:
 Evaluating bm25_top1k.trec...
 MRR @10: 0.18736452221767383
@@ -26,3 +27,4 @@ Evaluating t5m_mono_duo_modified_rerank_top1k.trec...
 MRR @10: 0.3887470437076461
 Evaluating t5m_mono_duo_rerank_top1k.trec...
 MRR @10: 0.3927071678719255
+```
